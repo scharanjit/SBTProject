@@ -4,7 +4,7 @@
 		module="sbttest_2.11"
 		revision="1.0"
 		status="integration"
-		publication="20160510123616"
+		publication="20160511115644"
 	>
 		<description>
 		SBTTest
@@ -34,9 +34,11 @@
 	<dependencies>
 		<dependency org="org.scala-lang" name="scala-compiler" rev="2.11.8" conf="scala-tool->default,optional(default)"/>
 		<dependency org="org.scala-lang" name="scala-library" rev="2.11.8" conf="scala-tool->default,optional(default);compile->default(compile)"/>
+		<dependency org="org.apache.spark" name="spark-mllib_2.11" rev="1.6.1" conf="compile->default(compile)"/>
 		<dependency org="org.apache.spark" name="spark-core_2.11" rev="1.6.1" conf="compile->default(compile)"/>
 		<dependency org="org.apache.commons" name="commons-io" rev="1.3.2" conf="compile->default(compile)"/>
 		<dependency org="com.google.guava" name="guava" rev="16.0.1" conf="compile->default(compile)"/>
 		<dependency org="org.specs2" name="specs2_2.11" rev="3.7" conf="compile->default(compile)"/>
+		<dependency org="org.apache.hadoop" name="hadoop-common" rev="2.7.2" conf="compile->default(compile)"/>
 	</dependencies>
 </ivy-module>

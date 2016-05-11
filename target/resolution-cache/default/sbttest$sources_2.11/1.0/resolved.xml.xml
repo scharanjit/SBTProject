@@ -4,7 +4,7 @@
 		module="sbttest$sources_2.11"
 		revision="1.0"
 		status="integration"
-		publication="20160510131650"
+		publication="20160511120113"
 	/>
 	<configurations>
 		<conf name="compile" visibility="public" description=""/>
@@ -26,6 +26,9 @@
 	<dependencies>
 		<dependency org="org.scala-lang" name="scala-library" rev="2.11.8" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile);scala-tool->default(compile)" info.apiURL="http://www.scala-lang.org/api/2.11.8/">
 			<artifact name="scala-library" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.apache.spark" name="spark-mllib_2.11" rev="1.6.1" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="spark-mllib_2.11" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 		</dependency>
 		<dependency org="org.apache.spark" name="spark-core_2.11" rev="1.6.1" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
 			<artifact name="spark-core_2.11" type="src" ext="jar" conf="sources" e:classifier="sources"/>
@@ -72,53 +75,20 @@
 		<dependency org="org.apache.xbean" name="xbean-asm5-shaded" rev="4.4" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
 			<artifact name="xbean-asm5-shaded" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 		</dependency>
-		<dependency org="org.apache.hadoop" name="hadoop-common" rev="2.2.0" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="hadoop-common" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
-		<dependency org="org.apache.hadoop" name="hadoop-annotations" rev="2.2.0" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="hadoop-annotations" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
-		<dependency org="commons-cli" name="commons-cli" rev="1.2" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="commons-cli" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
-		<dependency org="org.apache.commons" name="commons-math" rev="2.1" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="commons-math" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
-		<dependency org="commons-httpclient" name="commons-httpclient" rev="3.1" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="commons-httpclient" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
-		<dependency org="commons-codec" name="commons-codec" rev="1.4" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="commons-codec" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
-		<dependency org="log4j" name="log4j" rev="1.2.17" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="log4j" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
-		<dependency org="commons-lang" name="commons-lang" rev="2.5" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="commons-lang" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
-		<dependency org="commons-configuration" name="commons-configuration" rev="1.6" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="commons-configuration" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
-		<dependency org="commons-collections" name="commons-collections" rev="3.2.1" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="commons-collections" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
-		<dependency org="commons-digester" name="commons-digester" rev="1.8" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="commons-digester" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
-		<dependency org="commons-beanutils" name="commons-beanutils" rev="1.7.0" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="commons-beanutils" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
-		<dependency org="com.google.protobuf" name="protobuf-java" rev="2.5.0" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="protobuf-java" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
-		<dependency org="org.apache.hadoop" name="hadoop-auth" rev="2.2.0" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="hadoop-auth" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
 		<dependency org="org.apache.hadoop" name="hadoop-hdfs" rev="2.2.0" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
 			<artifact name="hadoop-hdfs" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 		</dependency>
 		<dependency org="org.mortbay.jetty" name="jetty-util" rev="6.1.26" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
 			<artifact name="jetty-util" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="commons-cli" name="commons-cli" rev="1.2" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="commons-cli" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="log4j" name="log4j" rev="1.2.17" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="log4j" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="com.google.protobuf" name="protobuf-java" rev="2.5.0" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="protobuf-java" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 		</dependency>
 		<dependency org="org.apache.hadoop" name="hadoop-mapreduce-client-app" rev="2.2.0" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
 			<artifact name="hadoop-mapreduce-client-app" type="src" ext="jar" conf="sources" e:classifier="sources"/>
@@ -156,19 +126,10 @@
 		<dependency org="org.codehaus.jettison" name="jettison" rev="1.1" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
 			<artifact name="jettison" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 		</dependency>
-		<dependency org="com.sun.xml.bind" name="jaxb-impl" rev="2.2.3-1" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="jaxb-impl" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
-		<dependency org="javax.xml.bind" name="jaxb-api" rev="2.2.2" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="jaxb-api" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
-		<dependency org="javax.activation" name="activation" rev="1.1" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="activation" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
-		<dependency org="org.codehaus.jackson" name="jackson-jaxrs" rev="1.8.8" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+		<dependency org="org.codehaus.jackson" name="jackson-jaxrs" rev="1.8.8" transitive="false" conf="compile->default(compile)">
 			<artifact name="jackson-jaxrs" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 		</dependency>
-		<dependency org="org.codehaus.jackson" name="jackson-xc" rev="1.8.8" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+		<dependency org="org.codehaus.jackson" name="jackson-xc" rev="1.8.8" transitive="false" conf="compile->default(compile)">
 			<artifact name="jackson-xc" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 		</dependency>
 		<dependency org="com.sun.jersey.contribs" name="jersey-guice" rev="1.9" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
@@ -188,9 +149,6 @@
 		</dependency>
 		<dependency org="org.apache.hadoop" name="hadoop-mapreduce-client-jobclient" rev="2.2.0" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
 			<artifact name="hadoop-mapreduce-client-jobclient" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
-		<dependency org="org.apache.hadoop" name="hadoop-yarn-server-nodemanager" rev="2.2.0" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="hadoop-yarn-server-nodemanager" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 		</dependency>
 		<dependency org="org.apache.spark" name="spark-launcher_2.11" rev="1.6.1" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
 			<artifact name="spark-launcher_2.11" type="src" ext="jar" conf="sources" e:classifier="sources"/>
@@ -222,20 +180,8 @@
 		<dependency org="org.apache.spark" name="spark-unsafe_2.11" rev="1.6.1" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
 			<artifact name="spark-unsafe_2.11" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 		</dependency>
-		<dependency org="net.java.dev.jets3t" name="jets3t" rev="0.7.1" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="jets3t" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
-		<dependency org="org.apache.curator" name="curator-recipes" rev="2.4.0" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="curator-recipes" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
-		<dependency org="org.apache.curator" name="curator-framework" rev="2.4.0" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="curator-framework" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
-		<dependency org="org.apache.curator" name="curator-client" rev="2.4.0" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="curator-client" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
-		<dependency org="org.apache.zookeeper" name="zookeeper" rev="3.4.5" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="zookeeper" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		<dependency org="commons-httpclient" name="commons-httpclient" rev="3.1" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="commons-httpclient" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 		</dependency>
 		<dependency org="jline" name="jline" rev="0.9.94" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
 			<artifact name="jline" type="src" ext="jar" conf="sources" e:classifier="sources"/>
@@ -243,13 +189,13 @@
 		<dependency org="org.eclipse.jetty.orbit" name="javax.servlet" rev="3.0.0.v201112011016" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
 			<artifact name="javax.servlet" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 		</dependency>
-		<dependency org="org.apache.commons" name="commons-lang3" rev="3.3.2" transitive="false" conf="compile->default(compile)">
+		<dependency org="org.apache.commons" name="commons-lang3" rev="3.3.2" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
 			<artifact name="commons-lang3" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 		</dependency>
 		<dependency org="org.apache.commons" name="commons-math3" rev="3.4.1" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
 			<artifact name="commons-math3" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 		</dependency>
-		<dependency org="org.slf4j" name="slf4j-api" rev="1.7.10" transitive="false" conf="compile->default(compile)">
+		<dependency org="org.slf4j" name="slf4j-api" rev="1.7.10" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
 			<artifact name="slf4j-api" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 		</dependency>
 		<dependency org="org.slf4j" name="jul-to-slf4j" rev="1.7.10" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
@@ -272,9 +218,6 @@
 		</dependency>
 		<dependency org="org.roaringbitmap" name="RoaringBitmap" rev="0.5.11" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
 			<artifact name="RoaringBitmap" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
-		<dependency org="commons-net" name="commons-net" rev="2.2" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="commons-net" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 		</dependency>
 		<dependency org="com.typesafe.akka" name="akka-remote_2.11" rev="2.3.11" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
 			<artifact name="akka-remote_2.11" type="src" ext="jar" conf="sources" e:classifier="sources"/>
@@ -360,6 +303,99 @@
 		<dependency org="net.sf.py4j" name="py4j" rev="0.9" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
 			<artifact name="py4j" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 		</dependency>
+		<dependency org="org.apache.hadoop" name="hadoop-yarn-server-nodemanager" rev="2.2.0" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="hadoop-yarn-server-nodemanager" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.apache.spark" name="spark-streaming_2.11" rev="1.6.1" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="spark-streaming_2.11" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.apache.spark" name="spark-sql_2.11" rev="1.6.1" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="spark-sql_2.11" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.apache.spark" name="spark-catalyst_2.11" rev="1.6.1" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="spark-catalyst_2.11" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.scala-lang" name="scala-reflect" rev="2.11.7" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)" info.apiURL="http://www.scala-lang.org/api/2.11.7/">
+			<artifact name="scala-reflect" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.codehaus.janino" name="janino" rev="2.7.8" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="janino" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.codehaus.janino" name="commons-compiler" rev="2.7.8" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="commons-compiler" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.apache.parquet" name="parquet-column" rev="1.7.0" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="parquet-column" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.apache.parquet" name="parquet-common" rev="1.7.0" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="parquet-common" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.apache.parquet" name="parquet-encoding" rev="1.7.0" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="parquet-encoding" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.apache.parquet" name="parquet-generator" rev="1.7.0" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="parquet-generator" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="commons-codec" name="commons-codec" rev="1.5" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="commons-codec" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.apache.parquet" name="parquet-hadoop" rev="1.7.0" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="parquet-hadoop" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.apache.parquet" name="parquet-format" rev="2.3.0-incubating" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="parquet-format" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.apache.parquet" name="parquet-jackson" rev="1.7.0" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="parquet-jackson" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.apache.spark" name="spark-graphx_2.11" rev="1.6.1" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="spark-graphx_2.11" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="com.github.fommil.netlib" name="core" rev="1.1.2" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="core" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.scalanlp" name="breeze_2.11" rev="0.11.2" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="breeze_2.11" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.scalanlp" name="breeze-macros_2.11" rev="0.11.2" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="breeze-macros_2.11" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="net.sf.opencsv" name="opencsv" rev="2.3" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="opencsv" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="com.github.rwl" name="jtransforms" rev="2.4.0" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="jtransforms" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.spire-math" name="spire_2.11" rev="0.7.4" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="spire_2.11" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.spire-math" name="spire-macros_2.11" rev="0.7.4" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="spire-macros_2.11" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.jpmml" name="pmml-model" rev="1.1.15" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="pmml-model" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.jpmml" name="pmml-agent" rev="1.1.15" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="pmml-agent" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.jpmml" name="pmml-schema" rev="1.1.15" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="pmml-schema" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="com.sun.xml.bind" name="jaxb-impl" rev="2.2.7" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="jaxb-impl" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="com.sun.xml.bind" name="jaxb-core" rev="2.2.7" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="jaxb-core" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="javax.xml.bind" name="jaxb-api" rev="2.2.7" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="jaxb-api" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="com.sun.istack" name="istack-commons-runtime" rev="2.16" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="istack-commons-runtime" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="com.sun.xml.fastinfoset" name="FastInfoset" rev="1.2.12" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="FastInfoset" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
 		<dependency org="org.apache.commons" name="commons-io" rev="1.3.2" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
 			<artifact name="commons-io" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 		</dependency>
@@ -380,9 +416,6 @@
 		</dependency>
 		<dependency org="org.scala-lang" name="scala-compiler" rev="2.11.7" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
 			<artifact name="scala-compiler" type="src" ext="jar" conf="sources" e:classifier="sources"/>
-		</dependency>
-		<dependency org="org.scala-lang" name="scala-reflect" rev="2.11.7" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)" info.apiURL="http://www.scala-lang.org/api/2.11.7/">
-			<artifact name="scala-reflect" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 		</dependency>
 		<dependency org="org.scala-lang.modules" name="scala-xml_2.11" rev="1.0.4" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile);scala-tool->default(compile)">
 			<artifact name="scala-xml_2.11" type="src" ext="jar" conf="sources" e:classifier="sources"/>
@@ -474,11 +507,101 @@
 		<dependency org="org.ow2.asm" name="asm-util" rev="4.1" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
 			<artifact name="asm-util" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 		</dependency>
-		<dependency org="org.apache.commons" name="commons-lang3" rev="3.0" transitive="false" conf="runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="commons-lang3" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		<dependency org="org.apache.hadoop" name="hadoop-common" rev="2.7.2" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="hadoop-common" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 		</dependency>
-		<dependency org="org.slf4j" name="slf4j-api" rev="1.7.2" transitive="false" conf="runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
-			<artifact name="slf4j-api" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		<dependency org="org.apache.hadoop" name="hadoop-annotations" rev="2.7.2" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="hadoop-annotations" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="commons-net" name="commons-net" rev="3.1" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="commons-net" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="commons-collections" name="commons-collections" rev="3.2.2" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="commons-collections" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="javax.servlet" name="servlet-api" rev="2.5" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="servlet-api" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.mortbay.jetty" name="jetty" rev="6.1.26" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="jetty" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="commons-logging" name="commons-logging" rev="1.1.3" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="commons-logging" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="net.java.dev.jets3t" name="jets3t" rev="0.9.0" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="jets3t" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="com.jamesmurty.utils" name="java-xmlbuilder" rev="0.4" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="java-xmlbuilder" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="commons-lang" name="commons-lang" rev="2.6" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="commons-lang" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="commons-configuration" name="commons-configuration" rev="1.6" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="commons-configuration" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="commons-digester" name="commons-digester" rev="1.8" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="commons-digester" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="commons-beanutils" name="commons-beanutils" rev="1.7.0" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="commons-beanutils" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="com.google.code.gson" name="gson" rev="2.2.4" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="gson" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.apache.hadoop" name="hadoop-auth" rev="2.7.2" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="hadoop-auth" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.apache.httpcomponents" name="httpclient" rev="4.2.5" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="httpclient" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.apache.httpcomponents" name="httpcore" rev="4.2.5" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="httpcore" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.apache.directory.server" name="apacheds-kerberos-codec" rev="2.0.0-M15" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="apacheds-kerberos-codec" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.apache.directory.server" name="apacheds-i18n" rev="2.0.0-M15" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="apacheds-i18n" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.apache.directory.api" name="api-asn1-api" rev="1.0.0-M20" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="api-asn1-api" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.apache.directory.api" name="api-util" rev="1.0.0-M20" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="api-util" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.apache.zookeeper" name="zookeeper" rev="3.4.6" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="zookeeper" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.apache.curator" name="curator-framework" rev="2.7.1" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="curator-framework" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.apache.curator" name="curator-client" rev="2.7.1" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="curator-client" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="com.jcraft" name="jsch" rev="0.1.42" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="jsch" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.apache.curator" name="curator-recipes" rev="2.7.1" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="curator-recipes" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="com.google.code.findbugs" name="jsr305" rev="3.0.0" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="jsr305" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.apache.htrace" name="htrace-core" rev="3.1.0-incubating" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="htrace-core" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="javax.servlet.jsp" name="jsp-api" rev="2.1" transitive="false" conf="compile->default(compile);runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="jsp-api" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.codehaus.jackson" name="jackson-jaxrs" rev="1.8.3" transitive="false" conf="runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="jackson-jaxrs" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="org.codehaus.jackson" name="jackson-xc" rev="1.8.3" transitive="false" conf="runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="jackson-xc" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+		</dependency>
+		<dependency org="asm" name="asm" rev="3.1" transitive="false" conf="runtime->default(compile);test->default(compile);compile-internal->default(compile);runtime-internal->default(compile);test-internal->default(compile)">
+			<artifact name="asm" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 		</dependency>
 		<dependency org="org.scala-lang" name="scala-compiler" rev="2.11.8" transitive="false" conf="scala-tool->default(compile)">
 			<artifact name="scala-compiler" type="src" ext="jar" conf="sources" e:classifier="sources"/>

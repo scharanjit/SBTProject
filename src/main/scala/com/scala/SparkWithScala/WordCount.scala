@@ -1,3 +1,5 @@
+package com.scala.SparkWithScala
+
 /**
   * Created by charanjiths on 10/5/16.
   */

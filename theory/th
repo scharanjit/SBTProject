@@ -2,13 +2,17 @@
 
 Simplicity, Flexibility and Performance are the major advantages of using Spark over Hadoop.
 
-    Spark is 100 times faster than Hadoop for big data processing as it stores the data in-memory, by placing it in Resilient Distributed Databases (RDD).
+    Spark is 100 times faster than Hadoop for big data processing as it stores the data in-memory,
+    by placing it in Resilient Distributed Databases (RDD).
     Spark is easier to program as it comes with an interactive mode.
     It provides complete recovery using lineage graph whenever something goes wrong.
 
 2) What is Shark?
 
-Most of the data users know only SQL and are not good at programming. Shark is a tool, developed for people who are from a database background - to access Scala MLib capabilities through Hive like SQL interface. Shark tool helps data users run Hive on Spark - offering compatibility with Hive metastore, queries and data.
+Most of the data users know only SQL and are not good at programming.
+Shark is a tool, developed for people who are from a database background -
+ to access Scala MLib capabilities through Hive like SQL interface.
+ Shark tool helps data users run Hive on Spark - offering compatibility with Hive metastore, queries and data.
 
 3) List some use cases where Spark outperforms Hadoop in processing.
 
@@ -18,20 +22,60 @@ Most of the data users know only SQL and are not good at programming. Shark is a
 
 4) What is a Sparse Vector?
 
-A sparse vector has two parallel arrays –one for indices and the other for values. These vectors are used for storing non-zero entries to save space.
+A sparse vector has two parallel arrays –one for indices and the other for values.
+These vectors are used for storing non-zero entries to save space.
 
 5) What is RDD?
 
-RDDs (Resilient Distributed Datasets) are basic abstraction in Apache Spark that represent the data coming into the system in object format. RDDs are used for in-memory computations on large clusters, in a fault tolerant manner. RDDs are read-only portioned, collection of records, that are –
+RDDs (Resilient Distributed Datasets) are basic abstraction in Apache Spark that represent the data coming
+into the system in object format. RDDs are used for in-memory computations on large clusters, in a fault tolerant manner.
+ RDDs are read-only portioned, collection of records, that are –
 
     Immutable – RDDs cannot be altered.
     Resilient – If a node holding the partition fails the other node takes the data.
 
+    lines = spark.textFile("hdfs://...")
+    errors = lines.filter(_.startsWith("ERROR"))
+    errors.persist()
+
+    Line 1 defines an RDD backed by an HDFS file (as a  collection of lines of text),
+    while line 2 derives a filtered RDD from it.
+     Line 3 then asks for errors to persist in memory so that it can be shared across queries.
+
+    At this point, no work has been performed on the clus-ter. However, the user can now use the RDD in actions,
+    e.g., to count the number of messages:
+    errors.count()
+
 6) Explain about transformations and actions in the context of RDDs.
 
-Transformations are functions executed on demand, to produce a new RDD. All transformations are followed by actions. Some examples of transformations include map, filter and reduceByKey.
+Transformations are functions executed on demand, to produce a new RDD.
+All transformations are followed by actions. Some examples of transformations include map, filter and reduceByKey.
+The user can also perform further transformations on
+the RDD and use their results, as in the following lines:
+// Count errors mentioning MySQL:
+errors.filter(_.contains("MySQL")).count()
 
-Actions are the results of RDD computations or transformations. After an action is performed, the data from RDD moves back to the local machine. Some examples of actions include reduce, collect, first, and take.
+
+
+Actions are the results of RDD computations or transformations. After an action is performed,
+the data from RDD moves back to the local machine. Some examples of actions include reduce, collect, first, and take.
+// Return the time fields of errors mentioning
+// HDFS as an array (assuming time is field
+// number 3 in a tab-separated format):
+errors.filter(_.contains("HDFS"))
+.map(_.split(’\t’)(3))
+.collect()
+
+
+The main difference between RDDs and DSM is that RDDs can only be created (“written”) through coarse-
+grained transformations, while DSM allows reads and writes to each memory location.
+This restricts RDDs to applications that perform bulk writes, but allows for
+more efficient fault tolerance.
+
+narrow dependencies, where eachpartition of the parent RDD is used by at most one parti-tion of the child RDD,
+wide dependencies, where multi-ple child partitions may depend on it.
+For example, map leads to a narrow dependency, while join leads to to wide
+dependencies
 
 7) What are the languages supported by Apache Spark for developing big data applications?
 
@@ -50,7 +94,8 @@ Yes, Apache Spark can be run on the hardware clusters managed by Mesos.
 The 3 different clusters managers supported in Apache Spark are:
 
     YARN
-    Apache Mesos -Has rich resource scheduling capabilities and is well suited to run Spark along with other applications. It is advantageous when several users run interactive shells because it scales down the CPU allocation between commands.
+    Apache Mesos -Has rich resource scheduling capabilities and is well suited to run Spark along with other applications.
+    It is advantageous when several users run interactive shells because it scales down the CPU allocation between commands.
     Standalone deployments – Well suited for new deployments which only run and are easy to set up.
 
 11) How can Spark be connected to Apache Mesos?
@@ -58,11 +103,13 @@ The 3 different clusters managers supported in Apache Spark are:
 To connect Spark with Mesos-
 
     Configure the spark driver program to connect to Mesos. Spark binary package should be in a location accessible by Mesos. (or)
-    Install Apache Spark in the same location as that of Apache Mesos and configure the property ‘spark.mesos.executor.home’ to point to the location where it is installed.
+    Install Apache Spark in the same location as that of Apache Mesos and
+    configure the property ‘spark.mesos.executor.home’ to point to the location where it is installed.
 
 12) How can you minimize data transfers when working with Spark?
 
-Minimizing data transfers and avoiding shuffling helps write spark programs that run in a fast and reliable manner. The various ways in which data transfers can be minimized when working with Apache Spark are:
+Minimizing data transfers and avoiding shuffling helps write spark programs that run in a fast and reliable manner.
+The various ways in which data transfers can be minimized when working with Apache Spark are:
 
     Using Broadcast Variable- Broadcast variable enhances the efficiency of joins between small and large RDDs.
     Using Accumulators – Accumulators help update the values of variables in parallel while executing.

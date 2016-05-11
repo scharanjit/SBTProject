@@ -3,6 +3,8 @@
   */
 import java.io.{File, FileWriter}
 
+import com.scala.SparkWithScala.WordCount
+
 // Scala
 import scala.io.Source
 
